@@ -81,27 +81,24 @@ Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/bionic64"
 
   # Описание первой машины
-  config.vm.define "vm1" do |web|
-    web.vm.hostname = "vm1-host"
+  config.vm.define "web" do |web|
+    web.vm.hostname = "web-node"
     web.vm.network "public_network", ip: "192.168.88.80"
 
     web.vm.provider "virtualbox" do |v|
       v.memory = 2048
-      v.cpus = 2
     end
   end
 
   # Описание второй машины
-  config.vm.define "vm2" do |db|
-    db.vm.hostname = "vm2-host"
-    db.vm.network "public_network", ip: "192.168.88.81"
+  config.vm.define "db" do |db|
+    db.vm.hostname = "db-node"
+    db.vm.network "private_network", ip: "192.168.56.10"
 
     db.vm.provider "virtualbox" do |v|
-      v.memory = 2048
-      v.cpus = 2
+      v.memory = 512
     end
   end
 end
-
 
 #end
