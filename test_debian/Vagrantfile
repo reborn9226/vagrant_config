@@ -1,0 +1,14 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "my-debian13"
+  config.vm.define "my-test" do |web|
+    web.vm.hostname = "test-debian"
+    web.vm.network "public_network", ip: "192.168.88.47"
+
+    web.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.cpus = 2
+    end
+  end
+
+end
